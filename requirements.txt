@@ -1,0 +1,20 @@
+# Core data science libraries
+pandas>=1.5.0
+numpy>=1.21.0
+scipy>=1.9.0
+
+# Machine learning libraries
+scikit-learn>=1.1.0
+xgboost>=1.6.0
+
+# Visualization
+matplotlib>=3.5.0
+
+# Jupyter notebook support
+jupyter>=1.0.0
+ipykernel>=6.15.0
+notebook>=6.4.0
+
+# Optional: Additional useful packages for ML projects
+seaborn>=0.11.0
+plotly>=5.0.0

@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  jupyter:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/app
+      - jupyter_data:/home/jupyter/.local
+    environment:
+      - PYTHONPATH=/app
+      - JUPYTER_ENABLE_LAB=yes
+    working_dir: /app
+    command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+    
+  # Optional: Add a service for running scripts directly
+  python:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONPATH=/app
+    working_dir: /app
+    command: tail -f /dev/null  # Keep container running
+    profiles: ["dev"]  # Only start with --profile dev
+
+volumes:
+  jupyter_data:
