@@ -83,7 +83,15 @@ Edit the following files to customize your setup:
 - `docker-compose.yml`: Change ports or volume mounts
 - `Dockerfile`: Modify the Python environment
 
+### Dependencies Fixed
+- ✅ **XGBoost OpenMP Issue Resolved**: Added `libomp-dev` and `libgomp1` to Docker image
+- ✅ **All ML Libraries**: pandas, numpy, scikit-learn, xgboost, scipy, matplotlib, seaborn
+- ✅ **Version Compatibility**: Pinned versions to avoid conflicts
+
 ### Troubleshooting
+
+**XGBoost OpenMP Error:**
+✅ **FIXED** - The Docker image now includes all required OpenMP libraries for XGBoost
 
 **Port already in use:**
 ```bash
@@ -96,3 +104,6 @@ The container runs as a non-root user for security. If you encounter permission 
 
 **Memory issues:**
 For large datasets, you may need to increase Docker's memory limit in Docker Desktop settings.
+
+**Kernel errors in logs:**
+These are harmless - they occur when Jupyter tries to reconnect to old kernels. Just create a new kernel in the notebook.
