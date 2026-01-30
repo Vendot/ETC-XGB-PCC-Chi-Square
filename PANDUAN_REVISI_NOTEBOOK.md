@@ -3,6 +3,7 @@
 ## STATUS REVISI YANG SUDAH DILAKUKAN
 
 ### ✅ SELESAI:
+
 1. **Judul utama** - Sudah diubah ke format akademik formal
 2. **Outline detail** - Sudah dihapus (terlalu panjang)
 3. **Bagian 1.1-1.4** - Import library, load dataset, validasi ca dan thal sudah formal
@@ -14,14 +15,17 @@
 ### Cell yang perlu DIREVISI/DITAMBAH:
 
 #### 1. Hapus Cell "Insight Komprehensif" (Cell 19-20)
+
 - Cell dengan 200+ baris analisis per fitur TERLALU PANJANG
 - Ganti dengan analisis per fitur yang lebih ringkas
 
 #### 2. Tambah Markdown: "# 2. Exploratory Data Analysis"
+
 ```markdown
 # 2. Exploratory Data Analysis (EDA)
 
 Tahap EDA bertujuan untuk memahami karakteristik data tanpa melakukan modifikasi. Analisis meliputi:
+
 - Karakteristik umum dataset
 - Distribusi target class
 - Distribusi setiap fitur
@@ -31,6 +35,7 @@ Tahap EDA bertujuan untuk memahami karakteristik data tanpa melakukan modifikasi
 ```
 
 #### 3. Revisi/Tambah: "## 2.1 Karakteristik Umum Dataset"
+
 ```markdown
 ## 2.1 Karakteristik Umum Dataset
 
@@ -38,6 +43,7 @@ Pada tahap ini dilakukan pemeriksaan karakteristik dasar dataset untuk memahami 
 ```
 
 **Kode Cell (tambahkan setelah markdown di atas):**
+
 ```python
 """
 Menampilkan karakteristik umum dataset setelah validasi awal
@@ -78,6 +84,7 @@ print("=" * 80)
 ```
 
 #### 4. Revisi: "## 2.2 Distribusi Target Class"
+
 ```markdown
 ## 2.2 Distribusi Target Class
 
@@ -85,6 +92,7 @@ Distribusi kelas target menunjukkan proporsi pasien yang terdiagnosis penyakit j
 ```
 
 **Kode tetap sama, tapi tambahkan print interpretasi:**
+
 ```python
 # ... kode visualisasi yang sudah ada ...
 
@@ -111,6 +119,7 @@ print("=" * 60)
 ```
 
 #### 5. Tambah: "## 2.3 Analisis Distribusi Fitur"
+
 ```markdown
 ## 2.3 Analisis Distribusi Fitur
 
@@ -121,6 +130,7 @@ Bagian ini menganalisis distribusi setiap fitur dalam dataset untuk memahami kar
 **a. Age (Usia)**
 
 Fitur age merepresentasikan usia pasien dalam tahun. Dari distribusi terlihat bahwa:
+
 - Rentang usia: 29-77 tahun
 - Mayoritas pasien berusia 50-60 tahun (middle-aged)
 - Distribusi cenderung normal dengan sedikit skewness ke kanan
@@ -131,6 +141,7 @@ Secara klinis, risiko penyakit jantung meningkat seiring bertambahnya usia, sehi
 **b. Trestbps (Resting Blood Pressure)**
 
 Fitur trestbps merepresentasikan tekanan darah saat istirahat (mmHg). Analisis menunjukkan:
+
 - Rentang: 94-200 mmHg
 - Rata-rata: ~131 mmHg (sedikit di atas normal 120 mmHg)
 - Terdapat 9 missing values (dari validasi awal)
@@ -141,6 +152,7 @@ Nilai tekanan darah tinggi (>140 mmHg) merupakan indikator hipertensi yang menja
 **c. Chol (Serum Cholesterol)**
 
 Fitur chol merepresentasikan kolesterol serum dalam mg/dl. Karakteristik:
+
 - Rentang: 126-564 mg/dl
 - Rata-rata: ~246 mg/dl (di atas batas normal 200 mg/dl)
 - Terdapat 5 missing values
@@ -151,6 +163,7 @@ Kolesterol tinggi (>200 mg/dl) meningkatkan risiko penyumbatan pembuluh darah da
 **d. Thalach (Maximum Heart Rate Achieved)**
 
 Fitur thalach merepresentasikan detak jantung maksimum yang dicapai saat tes stress. Pola distribusi:
+
 - Rentang: 71-202 bpm
 - Rata-rata: ~150 bpm
 - Distribusi mendekati normal dengan sedikit left-skew
@@ -161,6 +174,7 @@ Secara klinis, detak jantung maksimum yang rendah pada tes stress dapat mengindi
 **e. Oldpeak (ST Depression)**
 
 Fitur oldpeak merepresentasikan depresi segmen ST yang diinduksi oleh exercise. Karakteristik:
+
 - Rentang: -2.6 hingga 6.2
 - Mayoritas nilai mendekati 0-2
 - Distribusi sangat right-skewed
@@ -173,6 +187,7 @@ ST depression yang signifikan (>2) merupakan indikator kuat iskemia jantung.
 **f. Sex (Jenis Kelamin)**
 
 Encoding: 0=Female, 1=Male
+
 - Distribusi: ~68% Male, ~32% Female
 - Dataset memiliki bias gender karena penyakit jantung lebih prevalens pada pria
 - Jenis kelamin adalah faktor risiko yang sudah diketahui secara medis
@@ -180,6 +195,7 @@ Encoding: 0=Female, 1=Male
 **g. CP (Chest Pain Type)**
 
 Encoding: 0=typical angina, 1=atypical angina, 2=non-anginal pain, 3=asymptomatic
+
 - Distribusi relatif merata dengan tipe 0 (typical angina) paling banyak
 - Tipe chest pain adalah indikator penting untuk diagnosis awal
 - Asymptomatic (tipe 3) menunjukkan kasus yang lebih sulit dideteksi
@@ -187,6 +203,7 @@ Encoding: 0=typical angina, 1=atypical angina, 2=non-anginal pain, 3=asymptomati
 **h. FBS (Fasting Blood Sugar)**
 
 Encoding: 0=<120 mg/dl, 1=>120 mg/dl
+
 - Mayoritas pasien (~85%) memiliki FBS <120 mg/dl
 - FBS >120 mg/dl mengindikasikan diabetes atau prediabetes
 - Diabetes merupakan komorbiditas umum pada penyakit jantung
@@ -194,24 +211,28 @@ Encoding: 0=<120 mg/dl, 1=>120 mg/dl
 **i. RestECG (Resting Electrocardiographic)**
 
 Encoding: 0=normal, 1=ST-T abnormality, 2=left ventricular hypertrophy
+
 - Mayoritas pasien memiliki hasil ECG normal
 - Abnormalitas ECG dapat mengindikasikan kerusakan jantung
 
 **j. Exang (Exercise Induced Angina)**
 
 Encoding: 0=No, 1=Yes
+
 - Distribusi: ~67% No, ~33% Yes
 - Angina yang dipicu oleh exercise adalah tanda kuat iskemia jantung
 
 **k. Slope (Slope of Peak Exercise ST Segment)**
 
 Encoding: 0=upsloping, 1=flat, 2=downsloping
+
 - Mayoritas pasien memiliki slope tipe 1 (flat)
 - Slope downsloping mengindikasikan iskemia yang lebih parah
 
 **l. CA (Number of Major Vessels Colored by Fluoroscopy)**
 
 Nilai valid: 0-3
+
 - Mayoritas pasien memiliki ca=0 (tidak ada pembuluh tersumbat)
 - Semakin tinggi ca, semakin banyak pembuluh yang tersumbat
 - Terdapat 4 missing values (dari konversi ca=4)
@@ -219,6 +240,7 @@ Nilai valid: 0-3
 **m. Thal (Thalassemia)**
 
 Nilai valid: 1=normal, 2=fixed defect, 3=reversible defect
+
 - Distribusi mayoritas pada tipe 2 (fixed defect)
 - Thalassemia dapat menyebabkan anemia yang memperburuk kondisi jantung
 - Terdapat 2 missing values (dari konversi thal=0)
@@ -227,12 +249,14 @@ Nilai valid: 1=normal, 2=fixed defect, 3=reversible defect
 **CATATAN:** Cell dengan kode visualisasi distribusi (histogram) sudah ada, TIDAK PERLU diubah.
 
 #### 6. Revisi: "## 2.4 Identifikasi Nilai Ekstrem"
+
 ```markdown
 ## 2.4 Identifikasi Nilai Ekstrem (Outlier Awareness)
 
 Pada tahap ini dilakukan identifikasi terhadap nilai-nilai ekstrem menggunakan metode IQR (Interquartile Range) sebagai alat bantu. Penting untuk dicatat bahwa **nilai ekstrem tidak otomatis dihapus** karena dalam konteks medis, nilai ekstrem dapat merepresentasikan kondisi pasien yang sebenarnya.
 
 **Metode IQR:**
+
 - Q1 = Kuartil ke-25
 - Q3 = Kuartil ke-75
 - IQR = Q3 - Q1
@@ -242,6 +266,7 @@ Pada tahap ini dilakukan identifikasi terhadap nilai-nilai ekstrem menggunakan m
 Nilai di luar batas ini dikategorikan sebagai nilai ekstrem.
 
 **Pendekatan dalam Penelitian:**
+
 1. Nilai ekstrem diidentifikasi tetapi tidak langsung dihapus
 2. Konteks klinis dijadikan pertimbangan utama
 3. Treatment nilai ekstrem dilakukan pada tahap Data Cleaning dengan mengonversi ke NaN untuk diimputasi
@@ -249,7 +274,8 @@ Nilai di luar batas ini dikategorikan sebagai nilai ekstrem.
 
 **Cell kode yang sudah ada (identifikasi outlier dengan IQR) tetap digunakan.**
 
-#### 7. HAPUS Cell "## 2.5 Analisis Korelasi" 
+#### 7. HAPUS Cell "## 2.5 Analisis Korelasi"
+
 Pindahkan ke EDA (atau buat di bagian feature selection saja)
 
 ---
@@ -259,16 +285,20 @@ Pindahkan ke EDA (atau buat di bagian feature selection saja)
 Cell markdown yang sudah ada cukup baik, hanya perlu sedikit penyesuaian bahasa:
 
 ### Revisi Cell "# 3. Data Cleaning":
+
 ```markdown
 # 3. Data Cleaning
 
 Data cleaning merupakan tahap penting untuk memastikan kualitas data sebelum masuk ke tahap modeling. Pada bagian ini dilakukan:
+
 1. Deteksi dan penghapusan data duplikat
 2. Penanganan missing value melalui imputasi
 ```
 
 ### Revisi "## 3.1 Deteksi dan Penghapusan Data Duplikat":
+
 Cell sudah bagus, hanya tambahkan interpretasi:
+
 ```markdown
 ## 3.1 Deteksi dan Penghapusan Data Duplikat
 
@@ -294,17 +324,20 @@ Nilai ekstrem yang teridentifikasi pada tahap EDA akan ditangani pada bagian ini
 ```
 
 ### Tambahkan "## 3.3 Imputasi Missing Value"
+
 ```markdown
 ## 3.3 Imputasi Missing Value
 
 Setelah validasi domain dan treatment outlier, terdapat beberapa missing value yang perlu diimputasi. Missing value berasal dari:
-1. Validasi domain (ca=4 → NaN, thal=0 → NaN)  
+
+1. Validasi domain (ca=4 → NaN, thal=0 → NaN)
 2. Missing value original dari dataset (trestbps, chol, thalach, oldpeak)
 3. Konversi nilai ekstrem menjadi NaN
 
 **Metode Imputasi: KNN (K-Nearest Neighbors) dengan k=5**
 
 Alasan pemilihan KNN:
+
 - Mempertahankan pola lokal data (lebih akurat daripada mean/median)
 - Cocok untuk dataset multivariat dengan korelasi antar fitur
 - Tidak mengasumsikan distribusi tertentu
@@ -323,6 +356,7 @@ Setelah imputasi, dilakukan verifikasi untuk memastikan tidak ada missing value 
 # 4. Feature Engineering dan Feature Selection
 
 Tahap ini melakukan preparasi fitur dan seleksi fitur untuk meningkatkan performa model. Tahapan meliputi:
+
 1. Pemisahan fitur kontinyu dan diskrit
 2. Standardisasi fitur kontinyu
 3. Implementasi berbagai strategi feature selection
@@ -332,10 +366,12 @@ Tahap ini melakukan preparasi fitur dan seleksi fitur untuk meningkatkan perform
 Fitur dipisahkan menjadi dua kategori:
 
 **Fitur Kontinyu (5):** age, trestbps, chol, thalach, oldpeak
+
 - Memerlukan standardisasi (StandardScaler)
 - Menggunakan Pearson Correlation Coefficient (PCC) untuk seleksi
 
 **Fitur Diskrit (8):** sex, cp, fbs, restecg, exang, slope, ca, thal
+
 - Tidak perlu standardisasi
 - Menggunakan Chi-Square test untuk seleksi
 
@@ -367,12 +403,14 @@ Bagian ini mengimplementasikan model hybrid ETCXGBHybrid (Extra Trees Classifier
 ## 5.1 Arsitektur Model ETCXGBHybrid
 
 Model ETCXGBHybrid menggabungkan kekuatan dua algoritma ensemble:
+
 - **Extra Trees Classifier**: Extreme randomization untuk mengurangi overfitting
 - **XGBoost**: Gradient boosting untuk akurasi tinggi
 
 ## 5.2 Strategi Cross-Validation
 
 Evaluasi menggunakan **10-Fold Stratified Cross-Validation** dengan alasan:
+
 - Stratified: Menjaga proporsi class pada setiap fold
 - 10-Fold: Standar dalam machine learning research
 - Memberikan estimasi performa yang reliable
@@ -380,6 +418,7 @@ Evaluasi menggunakan **10-Fold Stratified Cross-Validation** dengan alasan:
 ## 5.3 Metrik Evaluasi
 
 Model dievaluasi menggunakan 5 metrik:
+
 1. **Accuracy**: Overall correctness
 2. **Precision**: Positive predictive value
 3. **Recall (Sensitivity)**: True positive rate - **PRIORITAS UTAMA**
@@ -391,6 +430,7 @@ Model dievaluasi menggunakan 5 metrik:
 ## 5.4 Hyperparameter Tuning
 
 Kombinasi hyperparameter yang diuji:
+
 - Estimators: {100, 200, 300}
 - PCC Threshold: {0.1, 0.15, 0.2}
 - Chi2 K: {5, 7, 9}
@@ -412,11 +452,13 @@ Untuk membandingkan performa antar skenario feature selection secara statistik, 
 **Tujuan**: Menguji apakah terdapat perbedaan signifikan antar skenario feature selection
 
 **Karakteristik**:
+
 - Non-parametric test (tidak mengasumsikan distribusi normal)
 - Equivalent dengan repeated measures ANOVA
 - Menggunakan ranking dari performa di setiap fold
 
 **Hipotesis**:
+
 - H₀: Tidak ada perbedaan signifikan antar skenario
 - H₁: Minimal ada satu skenario yang berbeda signifikan
 - α = 0.05
@@ -426,6 +468,7 @@ Untuk membandingkan performa antar skenario feature selection secara statistik, 
 Jika Friedman Test menunjukkan perbedaan signifikan (p < 0.05), dilanjutkan dengan uji Nemenyi untuk identifikasi pasangan skenario mana yang berbeda.
 
 **Output**:
+
 - Matriks p-value antar pasangan skenario
 - Visualisasi heatmap untuk interpretasi mudah
 - Identifikasi pasangan dengan perbedaan signifikan
@@ -433,6 +476,7 @@ Jika Friedman Test menunjukkan perbedaan signifikan (p < 0.05), dilanjutkan deng
 ## 6.3 Interpretasi Hasil
 
 Hasil uji statistik digunakan untuk:
+
 1. Validasi scientific: Apakah feature selection memberikan improvement signifikan?
 2. Pemilihan skenario terbaik berdasarkan bukti statistik
 3. Rekomendasi untuk implementasi praktis
