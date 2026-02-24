@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowchart Nested CV - Skripsi Fikri</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
+        });
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; background-color: #f4f7f6; }
+        .container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 90%; max-width: 1000px; }
+        h2 { color: #2c3e50; text-align: center; margin-bottom: 10px; }
+        p { color: #7f8c8d; text-align: center; margin-bottom: 30px; }
+        .mermaid { display: flex; justify-content: center; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Flowchart 5x5 Nested Cross-Validation</h2>
+        <p>Implementasi Hybrid ETCXGB pada Dataset UCI Heart Disease (N=302)</p>
+
+        <div class="mermaid">
+            graph TD
+                Start([Mulai: Dataset N=302]) --> SplitOuter[Bagi Dataset menjadi 5 Fold Luar]
+
+                subgraph OuterLoop [OUTER LOOP: Evaluasi Performa - 5 Iterasi]
+                    IterasiStart{Iterasi k = 1..5}
+                    
+                    IterasiStart --> OuterTest[<b>DATA TEST LUAR</b><br/>~60 atau 61 Data<br/><i>(Hidden Data)</i>]
+                    IterasiStart --> OuterTrain[<b>DATA TRAIN LUAR</b><br/>~241 atau 242 Data]
+                    
+                    subgraph InnerLoop [INNER LOOP: Tuning - 5 Iterasi]
+                        GridStart[Grid Search & 5-Fold CV]
+                        InnerSplit[Bagi Data Train Luar<br/>menjadi 5 Fold Dalam]
+                        TrainingTuning[Latih & Validasi Kombinasi Parameter<br/>Train: ~193, Val: ~48]
+                        BestParam[Pilih Hyperparameter Terbaik]
+                        
+                        GridStart --> InnerSplit --> TrainingTuning --> BestParam
+                    end
+                    
+                    OuterTrain --> GridStart
+                    BestParam --> Retrain[Latih Model Hybrid ETCXGB <br/>dengan Parameter Terbaik pada <br/><b>Seluruh Data Train Luar</b>]
+                    Retrain --> FinalTest[Uji Model pada<br/>DATA TEST LUAR]
+                    OuterTest -.-> FinalTest
+                    FinalTest --> RecordScore[/Simpan Akurasi Fold ke-k/]
+                end
+
+                RecordScore --> CekIterasi{Apakah k = 5?}
+                CekIterasi -- Belum --> IterasiStart
+                CekIterasi -- Sudah --> Average[Hitung Rata-rata Akurasi <br/> dari 5 Fold Luar]
+                Average --> Finish([Selesai: Estimasi Performa Final])
+
+                %% Styling
+                style OuterLoop fill:#f0f7ff,stroke:#0056b3,stroke-width:2px
+                style InnerLoop fill:#fff5f5,stroke:#c0392b,stroke-dasharray: 5 5
+                style Start fill:#d4edda,stroke:#28a745
+                style Finish fill:#d4edda,stroke:#28a745
+                style OuterTest fill:#fff3cd,stroke:#ffc107
+                style BestParam fill:#e8f5e9,stroke:#2e7d32
+        </div>
+    </div>
+
+</body>
+</html>
